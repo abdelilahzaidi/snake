@@ -43,29 +43,43 @@ grid.appendChild(head);
 body.appendChild(grid);
 
 const deplacement=(e)=>{    
-        const stepSize = 10; // Taille du pas de déplacement
-        
-        // Mettez à jour les coordonnées en fonction de la touche appuyée
-        switch (event.key) {
-          case "ArrowUp":
-            posY -= stepSize;
-            break;
-          case "ArrowDown":
-            posY += stepSize;
-            break;
-          case "ArrowLeft":
-            posX -= stepSize;
-            break;
-          case "ArrowRight":
-            posX += stepSize;
-            break;
-          default:
-            return; // Sortie de la fonction si une autre touche est pressée
-        }        
-        // Mettez à jour la position de la tête du serpent
-        head.style.left = posX + "px";
-        head.style.top = posY + "px";
-      }  
+    const stepSize = 10; // Taille du pas de déplacement
+  
+    // Mettez à jour les coordonnées en fonction de la touche appuyée
+    switch (e.key) {
+      case "ArrowUp":
+        if (posY - stepSize >= 0) {
+          posY -= stepSize;
+        }
+        else posY=1000
+        break;
+      case "ArrowDown":
+        if (posY + stepSize <= 990) {
+          posY += stepSize;
+        }
+        else posY=0
+        break;
+      case "ArrowLeft":
+        if (posX - stepSize >= 0) {
+          posX -= stepSize;
+        }
+        else posX=1000
+        break;
+      case "ArrowRight":
+        if (posX + stepSize <= 990) {
+          posX += stepSize;
+        }
+        else posX=0
+        break;
+      default:
+        return; // Sortie de la fonction si une autre touche est pressée
+    }
+    
+    // Mettez à jour la position de la tête du serpent
+    head.style.left = posX + "px";
+    head.style.top = posY + "px";
+}
+
 document.addEventListener("keydown", deplacement)
 
 
