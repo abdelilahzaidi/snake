@@ -42,38 +42,30 @@ grid.appendChild(food)
 grid.appendChild(head);
 body.appendChild(grid);
 
-
-
-
-const deplacement=(e)=>{
-    //console.log('Hello ')
-    const step=1
-    if (e.key == "ArrowUp" && posY != 1) {
-         posX = 0
-         posY = -1
-        console.log("ArrowUp")
-    }
-    else if (e.code == "ArrowDown" && posY != -1) {
-        posX = 0
-        posY = 1
-        console.log("ArrowDown")
-    }
-    else if (e.code == "ArrowLeft" && posX != 1) {
-        posX  = -1
-        posY = 0
-        console.log("ArrowLeft")
-    }
-    else if (e.code == "ArrowRight" && posX != -1) {
-        posX  = 1
-        posY = 0
-        console.log("ArrowRight")
-    }   
-    
-
-}
-
-
-
+const deplacement=(e)=>{    
+        const stepSize = 10; // Taille du pas de déplacement
+        
+        // Mettez à jour les coordonnées en fonction de la touche appuyée
+        switch (event.key) {
+          case "ArrowUp":
+            posY -= stepSize;
+            break;
+          case "ArrowDown":
+            posY += stepSize;
+            break;
+          case "ArrowLeft":
+            posX -= stepSize;
+            break;
+          case "ArrowRight":
+            posX += stepSize;
+            break;
+          default:
+            return; // Sortie de la fonction si une autre touche est pressée
+        }        
+        // Mettez à jour la position de la tête du serpent
+        head.style.left = posX + "px";
+        head.style.top = posY + "px";
+      }  
 document.addEventListener("keydown", deplacement)
 
 
